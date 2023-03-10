@@ -33,6 +33,18 @@ class Student:
             return 'error'
         return self.avg_grades() < other.avg_grades()
 
+    def __eq__(self, other):
+        if not isinstance(other, Student):
+            print('Different class')
+            return 'error'
+        return self.avg_grades() == other.avg_grades()
+
+    def __le__(self, other):
+        if not isinstance(other, Student):
+            print('Different class')
+            return 'error'
+        return self.avg_grades() <= other.avg_grades()
+
     def __str__(self):
         return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашнее задание: {self.avg_grades()}\n" \
                f"Курсы в процессе изучения: {(', ').join(self.courses_in_progress)}\n" \
@@ -68,6 +80,18 @@ class Lecturer(Mentor):
             print('Different class')
             return 'error'
         return self.avg_rate_lecturer() < other.avg_rate_lecturer()
+
+    def __eq__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Different class')
+            return 'error'
+        return self.avg_rate_lecturer() == other.avg_rate_lecturer()
+
+    def __le__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Different class')
+            return 'error'
+        return self.avg_rate_lecturer() <= other.avg_rate_lecturer()
 
     def __str__(self):
         return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекцию: {self.avg_rate_lecturer()}\n"
@@ -118,6 +142,9 @@ simple_student.rate_hw_lect(simple_lecturer, 'Введение в програм
 other_mentor = Reviewer('Sam', 'Smith')
 other_mentor.attached_courses += ['Git']
 
+new_mentor = Reviewer('Jekky', 'Chan')
+new_mentor.attached_courses += ['Python']
+
 print(best_student)
 print(simple_student)
 print(other_mentor)
@@ -127,3 +154,15 @@ print(simple_lecturer > cool_lecturer)
 print(best_student < simple_student)
 print(simple_lecturer < cool_lecturer)
 print(best_student > simple_student)
+print(simple_lecturer == cool_lecturer)
+print(best_student != simple_student)
+print(simple_lecturer == cool_lecturer)
+print(best_student != simple_student)
+print(simple_lecturer >= cool_lecturer)
+print(best_student <= simple_student)
+print(simple_lecturer <= cool_lecturer)
+print(best_student >= simple_student)
+
+
+print(best_student.grades)
+print(cool_lecturer.rates_lecturer)
